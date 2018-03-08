@@ -163,7 +163,7 @@ openvpn_{{ type }}_{{ name }}_log_file:
   file.managed:
     - name: {{ config.log }}
     - makedirs: True
-    {{ _permissions() }}
+    {{ _permissions(600, 'root', 0) }}  # different group names on FreeBSD and Debian/Ubuntu
 {% endif %}
 
 {% if config.log_append is defined %}
@@ -172,7 +172,7 @@ openvpn_{{ type }}_{{ name }}_log_file_append:
   file.managed:
     - name: {{ config.log_append }}
     - makedirs: True
-    {{ _permissions() }}
+    {{ _permissions(600, 'root', 0) }}  # different group names on FreeBSD and Debian/Ubuntu
 {% endif %}
 
 {% if config.client_config_dir is defined %}
